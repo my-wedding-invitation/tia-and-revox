@@ -22,7 +22,7 @@ export default function(api) {
             return data.length ? data[0] : {}
         },
         async remove(uuid) {
-            const { error } = await supabase
+            const { error } = await api
                 .from('guests')
                 .delete()
                 .eq('uuid', uuid)
