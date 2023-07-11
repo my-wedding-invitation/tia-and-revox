@@ -17,7 +17,7 @@ export default function(api) {
             const { data } = await api
                 .from('comments')
                 .update(comment)
-                .match({ uuid })
+                .eq('uuid', uuid)
                 .select()
             return data.length ? data[0] : {}
         },
@@ -25,7 +25,7 @@ export default function(api) {
             const { error } = await supabase
                 .from('comments')
                 .delete()
-                .match({ uuid })
+                .eq('uuid', uuid)
             return error
         }
     }

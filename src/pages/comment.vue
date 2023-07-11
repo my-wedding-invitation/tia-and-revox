@@ -206,7 +206,7 @@ export default {
             const payload = cloneDeep(this.comment)
             const uuid = payload.uuid
             delete payload.uuid
-            if (uuid) {
+            if (this.edit) {
                 const success = await this.updateComment(uuid, payload)
                 this.$Simplert.open({
                     title: '',
