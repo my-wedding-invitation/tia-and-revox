@@ -421,6 +421,10 @@ export default {
         },
         openInvitation() {
             $(this.$refs.open).modal('hide')
+            this.toggleSong()
+            setTimeout(() => {
+                this.toggleSong()
+            }, 5e2)
         },
         toggleSong() {
             if (this.song.play) {
@@ -509,7 +513,7 @@ export default {
 }
 .floating-icons {
   position: fixed;
-  top: 10px;
+  top: 30px;
   left: 10px;
   z-index: 999;
 }
