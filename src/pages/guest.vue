@@ -215,9 +215,9 @@ export default {
                 customConfirmBtnText: 'Iya',
                 customConfirmBtnClass: 'btn btn-danger',
                 onConfirm() {
-                    this.remove(vm.selected.uuid)
+                    vm.remove(vm.selected.uuid)
                         .then(() => {
-                            this.$Simplert.open({
+                            vm.$Simplert.open({
                                 title: '',
                                 message: `Hapus Data ${resp.indexOf(false) === -1 ? 'Berhasil' : 'Gagal'}`,
                                 type: '',
