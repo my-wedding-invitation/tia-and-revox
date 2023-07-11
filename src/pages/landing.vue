@@ -157,31 +157,83 @@
                 </div>
             </div>
         </section>
+        <div ref="open" class="modal inmodal fade p-0" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg p-0 m-0 h-100" style="max-width: 100%; max-height: 100%;">
+                <div class="modal-content h-100" style="background-color: rgba(0, 0, 0, 0.7);">
+                    <div id="particles-js-3"></div>
+                    <div class="modal-body" style="background: rgba(0, 0, 0, 0.7);">
+                        <div class="container-fluid h-100">
+                            <div class="row h-100 justify-content-center align-items-center">
+                                <div class="col-lg-12 text-center">
+                                    <img id="cover" class="img-fluid w-25" src="/img/data/Foto Cover Depan.jpg" style="-webkit-mask-image: url('/img/data/mask-photo.png');-webkit-mask-size: 100%;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;" />
+                                    <h2 class="mt-5" style="font-family: 'Montserrat', sans-serif;font-size: 24px;color: #ffffff;font-weight: bold;">Pernikahan</h2>
+                                    <h3 id="name" style="font-family: 'Great Vibes', cursive;font-size: 72px;margin: 30px 0px;color: #9E5454;">Tia & Revox </h3>
+                                    <p style="color: #ffffff;font-size: 16px;">Special Invite To:</p>
+                                    <p style="color: #9E5454;font-weight: bold;" class="mt-0">{{ guests ? guests.name : '' }}</p>
+                                    <button class="btn text-white" style="background-color: #9E5454;" @click="openInvitation">
+                                        <i class="fa fa-envelope-open mr-2"></i>
+                                        Buka Undangan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ref="player" class="music-player"></div>
+        <div class="floating-icons">
+            <button class="start-stop" @click="toggleSong">
+            <i :class="['fa', song.play ? 'fa-pause' : 'fa-play']"></i>
+            </button>
+        </div>
     </app-fragment>
 </template>
 <script>
 import { Fragment } from 'vue-fragment';
+import { mapActions, mapState } from 'pinia'
+import { useGuestStore } from '@/store/guest'
+import YouTubePlayer from 'youtube-player'
 
 export default {
     name: 'Landing',
     components: {
         'app-fragment': Fragment
     },
+    created() {
+        if (this.$route.query.to) {
+            this.slug(this.$route.query.to)
+        }
+    },
     data() {
         return {
-            counter: ''
+            counter: '',
+            song: {
+                id: '7azGGgUEEGY',
+                play: false,
+                player: null,
+            }
         }
     },
     mounted() {
         const body = document.querySelector('body')
         body.classList.add('landing-page')
         body.classList.add('no-skin-config')
+        this.registerSong()
         this.registerParticleJS()
         this.registerParticleJS('-2')
         this.registerLottieJS()
         this.countdownToDate('2023-07-23')
+        $(this.$refs.open).modal('show')
+        setTimeout(() => {
+            this.registerParticleJS('-3')
+        }, 1e3)
+    },
+    computed: {
+        ...mapState(useGuestStore, ['guests']),
     },
     methods: {
+        ...mapActions(useGuestStore, ['slug']),
         countdownToDate(targetDate) {
             var self = this
             var targetTime = new Date(targetDate).getTime()
@@ -206,6 +258,42 @@ export default {
                     self.counter = "Sedang Berlangsung"
                 }
             }, 1000)
+        },
+        registerSong() {
+            this.loadYouTubeAPI().then(() => {
+                this.$nextTick(() => {
+                    this.song.player = YouTubePlayer(this.$refs.player, {
+                        videoId: this.song.id,
+                        playerVars: {
+                            autoplay: 0,
+                            controls: 0,
+                            modestbranding: 1,
+                            rel: 0,
+                            loop: 1,
+                            start: 0
+                        }
+                    })
+
+                    this.song.player.on('ready', () => {
+                        this.onPlayerReady()
+                    })
+
+                    this.song.player.on('stateChange', event => {
+                        this.onPlayerStateChange(event)
+                    })
+                })
+            })
+        },
+        loadYouTubeAPI() {
+            return new Promise(resolve => {
+                const tag = document.createElement('script')
+                tag.src = 'https://www.youtube.com/iframe_api'
+                const firstScriptTag = document.getElementsByTagName('script')[0]
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+                window.onYouTubeIframeAPIReady = () => {
+                    resolve()
+                }
+            })
         },
         registerParticleJS(suffix = '') {
             particlesJS(`particles-js${suffix}`, {
@@ -333,14 +421,35 @@ export default {
                 autoplay: true,
                 path: animationPath
             })
-
+        },
+        openInvitation() {
+            $(this.$refs.open).modal('hide')
+        },
+        toggleSong() {
+            if (this.song.play) {
+                this.song.player.pauseVideo()
+            } else {
+                this.song.player.playVideo()
+            }
+            this.song.play = !this.song.play
+        },
+        onPlayerReady(event) {
+            this.song.player.playVideo()
+            this.song.play = true
+        },
+        onPlayerStateChange(event) {
+            if (event.data === window.YT.PlayerState.ENDED) {
+                this.song.player.seekTo(0)
+                this.song.player.playVideo()
+            }
         }
     }
 }
 </script>
 <style scoped>
 #particles-js,
-#particles-js-2 {
+#particles-js-2,
+#particles-js-3 {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -390,8 +499,37 @@ export default {
 }
 @media screen and (min-width: 767px) {
     #particles-js,
-    #particles-js-2 {
+    #particles-js-2,
+    #particles-js-3 {
         background-position: 50% 35%;
     }
+    #cover {
+        width: 10% !important;
+    }
+}
+.music-player {
+  width: 0;
+  height: 0;
+}
+
+.floating-icons {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+}
+
+.start-stop {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #9E5454;
+  transition: color 0.3s;
+}
+
+.start-stop:hover {
+  color: #9E5454;
 }
 </style>

@@ -20,6 +20,12 @@ export const useGuestStore = defineStore('guest', {
                 if (data) this.guests = data
             } catch (e) {}
         },
+        async slug(slug) {
+            try {
+                const data = await guest.slug(slug)
+                if (data) this.guests = data
+            } catch (e) {}
+        },
         async update(uuid, payload) {
             const data = await guest.update(uuid, payload)
             if (data) {

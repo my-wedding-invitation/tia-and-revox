@@ -6,6 +6,13 @@ export default function(api) {
                 .select()
             return data
         },
+        async slug(slug) {
+            const { data } = await api
+                .from('guests')
+                .select()
+                .eq('slug', slug)
+            return data.length ? data[0] : {}
+        },
         async create(guest) {
             const { data } = await api
                 .from('guests')
