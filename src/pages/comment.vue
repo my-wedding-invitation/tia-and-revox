@@ -231,7 +231,7 @@ export default {
             const vm = this
             this.$Simplert.open({
                 title: '',
-                message: 'Are You Sure?',
+                message: 'Apakah Kamu Yakin?',
                 type: '',
                 useConfirmBtn: true,
                 customCloseBtnText: 'Ya',
