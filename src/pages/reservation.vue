@@ -221,7 +221,7 @@ export default {
                 const success = await this.updateReservation(uuid, payload)
                 this.$Simplert.open({
                     title: '',
-                    message: `Update Data ${success ? 'Success' : 'Failed'}`,
+                    message: `Ubah Data ${success ? 'Berhasil' : 'Gagal'}`,
                     type: '',
                     customCloseBtnClass: 'btn btn-success',
                     customCloseBtnText: 'Close'
@@ -230,7 +230,7 @@ export default {
                 const reservation = await this.createReservation(payload)
                 this.$Simplert.open({
                     title: '',
-                    message: `Create Data ${reservation ? 'Success' : 'Failed'}`,
+                    message: `Buat Data ${reservation ? 'Berhasil' : 'Gagal'}`,
                     type: '',
                     customCloseBtnClass: 'btn btn-success',
                     customCloseBtnText: 'Close'
@@ -245,16 +245,16 @@ export default {
                 message: 'Apakah Kamu Yakin?',
                 type: '',
                 useConfirmBtn: true,
-                customCloseBtnText: 'Ya',
+                customCloseBtnText: 'Tidak',
                 customCloseBtnClass: 'btn btn-white',
-                customConfirmBtnText: 'No',
+                customConfirmBtnText: 'Iya',
                 customConfirmBtnClass: 'btn btn-danger',
                 onConfirm() {
                     this.removeReservation(vm.selected.uuid)
                         .then(() => {
                             this.$Simplert.open({
                                 title: '',
-                                message: `Remove Data ${resp.indexOf(false) === -1 ? 'Success' : 'Failed'}`,
+                                message: `Hapus Data ${resp.indexOf(false) === -1 ? 'Berhasil' : 'Gagal'}`,
                                 type: '',
                                 customCloseBtnClass: 'btn btn-success',
                                 customCloseBtnText: 'Close'
