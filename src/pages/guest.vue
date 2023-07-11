@@ -51,6 +51,7 @@
                                             <th>Name</th>
                                             <th>Phone</th>
                                             <th>Account</th>
+                                            <th>Action</th>
                                         </thead>
                                         <tbody slot="body" slot-scope="{displayData}">
                                             <v-tr v-for="row in displayData" :key="row.id" :row="row"
@@ -58,6 +59,7 @@
                                                 <td>{{ row.name }}</td>
                                                 <td>{{ row.phone }}</td>
                                                 <td>{{ row.account }}</td>
+                                                <td class="text-center"><i class="fa fa-chain" title="Copy Link" @click="copyLink(row)"></i></td>
                                             </v-tr>
                                             <v-tr v-if="displayData.length === 0" :row="{}">
                                                 <td colspan="4" class="text-center">There's No Data</td>
@@ -99,6 +101,17 @@
                             <div class="hr-line-dashed"></div>
                             <div class="form-group row">
                                 <div class="col-lg-6">
+                                    <label>Url</label>
+                                    <input type="text" class="form-control" v-model="url" disabled>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Slug</label>
+                                    <input type="text" class="form-control" v-model="guest.slug" disabled>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
                                     <label>Phone</label>
                                     <input type="text" class="form-control" v-model="guest.phone">
                                 </div>
@@ -121,6 +134,7 @@
 </template>
 <script>
 import cloneDeep from 'lodash/cloneDeep'
+import slug from 'slug'
 import { Fragment } from 'vue-fragment'
 import { mapActions, mapState } from 'pinia'
 import { useGuestStore } from '@/store/guest'
@@ -135,9 +149,11 @@ export default {
     },
     data: () => ({
         selected: null,
+        url: `${window.location.origin}/`,
         guest: {
             uuid: '',
             name: '',
+            slug: '',
             phone: '',
             account: ''
         },
@@ -156,12 +172,24 @@ export default {
     computed: {
         ...mapState(useGuestStore, ['guests']),
     },
+    watch: {
+        'guest.name': function (val) {
+            const guestSlug = slug(val, { lower: false })
+            const exists = this.guests.find(guest => guest.slug === guestSlug)
+            if (exists) {
+                this.guest.slug = `${guestSlug}-${Math.floor(Math.random() * 1000)}`
+            } else {
+                this.guest.slug = guestSlug
+            }
+        }
+    },
     methods: {
         ...mapActions(useGuestStore, ['create', 'read', 'update', 'remove']),
         handleAddGuest() {
             this.guest = {
                 uuid: '',
                 name: '',
+                slug: '',
                 phone: '',
                 account: ''
             }
@@ -216,7 +244,7 @@ export default {
                 customConfirmBtnClass: 'btn btn-danger',
                 onConfirm() {
                     vm.remove(vm.selected.uuid)
-                        .then(() => {
+                        .then((resp) => {
                             vm.$Simplert.open({
                                 title: '',
                                 message: `Hapus Data ${resp.indexOf(false) === -1 ? 'Berhasil' : 'Gagal'}`,
@@ -227,7 +255,16 @@ export default {
                         })
                 }
             })
+        },
+        copyLink(guest) {
+            const link = `${this.url}?to=${guest.slug}`
+            const tempInput = document.createElement('input')
+            document.body.appendChild(tempInput)
+            tempInput.setAttribute('value', link)
+            tempInput.select()
+            document.execCommand('copy')
+            document.body.removeChild(tempInput)
         }
-    }
+    },
 }
 </script>

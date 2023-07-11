@@ -240,7 +240,7 @@ export default {
                 customConfirmBtnClass: 'btn btn-danger',
                 onConfirm() {
                     vm.removeComment(vm.selected.uuid)
-                        .then(() => {
+                        .then((resp) => {
                             vm.$Simplert.open({
                                 title: '',
                                 message: `Hapus Data ${resp.indexOf(false) === -1 ? 'Berhasil' : 'Gagal'}`,

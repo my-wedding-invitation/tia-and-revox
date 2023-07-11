@@ -15,6 +15,7 @@ const router = new Router({
             path: '/',
             name: 'Landing',
             component: () => import('@/pages/landing.vue'),
+            props: (route) => ({ guest: route.query.to }),
         },
         {
             path: '/access',
