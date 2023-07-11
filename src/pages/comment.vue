@@ -204,9 +204,9 @@ export default {
         },
         async handleClickSave() {
             const payload = cloneDeep(this.comment)
-            const uuid = payload.uuid
-            delete payload.uuid
             if (this.edit) {
+                const uuid = payload.uuid
+                delete payload.uuid
                 const success = await this.updateComment(uuid, payload)
                 this.$Simplert.open({
                     title: '',

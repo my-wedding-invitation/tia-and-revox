@@ -215,9 +215,9 @@ export default {
         },
         async handleClickSave() {
             const payload = cloneDeep(this.reservation)
-            const uuid = payload.uuid
-            delete payload.uuid
             if (this.edit) {
+                const uuid = payload.uuid
+                delete payload.uuid
                 const success = await this.updateReservation(uuid, payload)
                 this.$Simplert.open({
                     title: '',
