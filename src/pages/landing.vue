@@ -113,7 +113,7 @@
                         <i class="fa fa-calendar"></i> Google Calendar
                     </a>
                     <div class="mt-3">
-                        <img class="img-fluid w-25" src="/img/data/basmalah.png" />
+                        <img class="img-fluid w-50" src="/img/data/basmalah.png" />
                     </div>
                     <p class="mx-auto text-white mt-3 px-3">
                         "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
