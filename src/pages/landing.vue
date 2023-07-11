@@ -181,11 +181,13 @@
                 </div>
             </div>
         </div>
-        <div ref="player" class="music-player"></div>
-        <div class="floating-icons">
-            <button class="start-stop" @click="toggleSong">
-            <i :class="['fa', song.play ? 'fa-pause' : 'fa-play']"></i>
-            </button>
+        <div id="player-wrapper">
+            <div id="player" class="music-player"></div>
+            <div class="floating-icons">
+                <button class="start-stop" @click="toggleSong">
+                <i :class="['fa', song.play ? 'fa-pause' : 'fa-play']"></i>
+                </button>
+            </div>
         </div>
     </app-fragment>
 </template>
@@ -193,7 +195,7 @@
 import { Fragment } from 'vue-fragment';
 import { mapActions, mapState } from 'pinia'
 import { useGuestStore } from '@/store/guest'
-import YouTubePlayer from 'youtube-player'
+import YoutubePlayer from 'youtube-iframe-player'
 
 export default {
     name: 'Landing',
@@ -220,6 +222,23 @@ export default {
         body.classList.add('landing-page')
         body.classList.add('no-skin-config')
         this.registerSong()
+        .then(() => {
+            this.song.player = new window.YT.Player('player', {
+                videoId: this.song.id,
+                playerVars: {
+                    autoplay: 0,
+                    controls: 0,
+                    modestbranding: 1,
+                    rel: 0,
+                    loop: 1,
+                    start: 0
+                },
+                events: {
+                    onReady: this.onPlayerReady,
+                    onStateChange: this.onPlayerStateChange
+                }
+            })
+        })
         this.registerParticleJS()
         this.registerParticleJS('-2')
         this.registerLottieJS()
@@ -260,38 +279,17 @@ export default {
             }, 1000)
         },
         registerSong() {
-            this.loadYouTubeAPI().then(() => {
-                this.$nextTick(() => {
-                    this.song.player = YouTubePlayer(this.$refs.player, {
-                        videoId: this.song.id,
-                        playerVars: {
-                            autoplay: 0,
-                            controls: 0,
-                            modestbranding: 1,
-                            rel: 0,
-                            loop: 1,
-                            start: 0
-                        }
-                    })
-
-                    this.song.player.on('ready', () => {
-                        this.onPlayerReady()
-                    })
-
-                    this.song.player.on('stateChange', event => {
-                        this.onPlayerStateChange(event)
-                    })
-                })
-            })
-        },
-        loadYouTubeAPI() {
-            return new Promise(resolve => {
-                const tag = document.createElement('script')
-                tag.src = 'https://www.youtube.com/iframe_api'
-                const firstScriptTag = document.getElementsByTagName('script')[0]
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-                window.onYouTubeIframeAPIReady = () => {
+            return new Promise((resolve) => {
+                if (window.YT && typeof window.YT.Player === 'function') {
                     resolve()
+                } else {
+                    const tag = document.createElement('script')
+                    tag.src = 'https://www.youtube.com/iframe_api'
+                    const firstScriptTag = document.getElementsByTagName('script')[0]
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+                    window.onYouTubeIframeAPIReady = () => {
+                        resolve()
+                    }
                 }
             })
         },
@@ -433,7 +431,7 @@ export default {
             }
             this.song.play = !this.song.play
         },
-        onPlayerReady(event) {
+        onPlayerReady() {
             this.song.player.playVideo()
             this.song.play = true
         },
@@ -507,11 +505,9 @@ export default {
         width: 10% !important;
     }
 }
-.music-player {
-  width: 0;
-  height: 0;
+#player-wrapper {
+    position: fixed;
 }
-
 .floating-icons {
   position: fixed;
   top: 10px;
