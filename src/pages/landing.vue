@@ -195,7 +195,6 @@
 import { Fragment } from 'vue-fragment';
 import { mapActions, mapState } from 'pinia'
 import { useGuestStore } from '@/store/guest'
-import YoutubePlayer from 'youtube-iframe-player'
 
 export default {
     name: 'Landing',
