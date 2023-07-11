@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview --port 4173",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview --port 4173"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.26.0",
