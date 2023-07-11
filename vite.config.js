@@ -5,7 +5,6 @@ import legacy from '@vitejs/plugin-legacy'
 import vue2 from '@vitejs/plugin-vue2'
 
 export default defineConfig({
-  base: '/tia-and-revox/',
   plugins: [
     vue2(),
     legacy({
@@ -21,6 +20,5 @@ export default defineConfig({
   publicDir: 'public',
   optimizeDeps: {
     include: ['map-promisified']
-  },
-  assetsInclude: ['**/*.jpg', '**/*.png', '**/*.gif', '**/*.svg']
+  }
 })
