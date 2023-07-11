@@ -213,7 +213,7 @@ export default {
                 id: '7azGGgUEEGY',
                 play: false,
                 player: null,
-            }
+            },
         }
     },
     mounted() {
@@ -246,6 +246,15 @@ export default {
         setTimeout(() => {
             this.registerParticleJS('-3')
         }, 1e3)
+        let lastYOffset = 0
+        addEventListener('scroll', () => {
+            if (window.pageYOffset > 50 &&  window.pageYOffset > lastYOffset) {
+                $('.floating-icons').css('top', '40px')
+            } else {
+                $('.floating-icons').css('top', '10px')
+            }
+            lastYOffset = window.pageYOffset
+        })
     },
     computed: {
         ...mapState(useGuestStore, ['guests']),
@@ -513,7 +522,7 @@ export default {
 }
 .floating-icons {
   position: fixed;
-  top: 30px;
+  top: 10px;
   left: 10px;
   z-index: 999;
 }
@@ -523,9 +532,12 @@ export default {
   border: none;
   outline: none;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 10px;
+  line-height: 2;
   color: #9E5454;
   transition: color 0.3s;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
 }
 
 .start-stop:hover {
