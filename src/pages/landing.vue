@@ -28,9 +28,9 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-lg-12 d-flex justify-content-around">
-                                <img class="img-fluid w-25" src="img/data/Foto CPW.jpg" style="-webkit-mask-image: url('img/data/mask-photo.png');-webkit-mask-size: 100%;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;" />
+                                <img class="img-fluid w-25" src="/img/data/Foto CPW.jpg" style="-webkit-mask-image: url('/img/data/mask-photo.png');-webkit-mask-size: 100%;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;" />
                                 <div id="lottie-container" class="w-25"></div>
-                                <img class="img-fluid w-25" src="img/data/Foto CPP.jpg"  style="-webkit-mask-image: url('img/data/mask-photo.png');-webkit-mask-size: 100%;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;" />
+                                <img class="img-fluid w-25" src="/img/data/Foto CPP.jpg"  style="-webkit-mask-image: url('/img/data/mask-photo.png');-webkit-mask-size: 100%;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;" />
                             </div>
                         </div>
                         <div class="row mt-5 mb-5 text-center">
@@ -72,7 +72,7 @@
             <div id="overlay-3"></div>
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 text-center wow zoomIn animated mt-5" style="position: relative;">
-                    <img class="im-fluid" id="botanical" style="width: 5%;" src="img/data/Botanical-line-Art-white-1.png" />
+                    <img class="im-fluid" id="botanical" style="width: 5%;" src="/img/data/Botanical-line-Art-white-1.png" />
                     <h3 class="text-white mt-3 mb-3">Hitung Mundur</h3>
                     <h1 style="font-family: 'Great Vibes', cursive;color: #9E5454;">Menuju Hari Bahagia</h1>
                     <div v-if="typeof(counter) == 'string'" style="font-size: 40px;">{{ counter }}</div>
@@ -113,7 +113,7 @@
                         <i class="fa fa-calendar"></i> Google Calendar
                     </a>
                     <div class="mt-3">
-                        <img class="img-fluid w-25" src="img/data/basmalah.png" />
+                        <img class="img-fluid w-25" src="/img/data/basmalah.png" />
                     </div>
                     <p class="mx-auto text-white mt-3 px-3">
                         "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
@@ -135,7 +135,7 @@
                         </div>
                         <div class="row mt-5 mb-5 text-center">
                             <div class="col-lg-6">
-                                <img class="img-fluid" src="img/data/wedding-contract.png" />
+                                <img class="img-fluid" src="/img/data/wedding-contract.png" />
                                 <h1 class="mt-4 mb-3" style="font-family: 'Great Vibes', cursive;color: #9E5454;">Akad</h1>
                                 <hr class="w-50" style="border-top-color: #676a6c;" />
                                 <h1 class="mb-0" style="font-family: 'Great Vibes', cursive;color: #9E5454;">23</h1>
@@ -144,7 +144,7 @@
                                 <h5>s.d. Selesai</h5>
                             </div>
                             <div class="col-lg-6" id="resepsi">
-                                <img class="img-fluid" src="img/data/eat.png" />
+                                <img class="img-fluid" src="/img/data/eat.png" />
                                 <h1 class="mt-4 mb-3" style="font-family: 'Great Vibes', cursive;color: #9E5454;">Resepsi</h1>
                                 <hr class="w-50" style="border-top-color: #676a6c;" />
                                 <h1 class="mb-0" style="font-family: 'Great Vibes', cursive;color: #9E5454;">23</h1>
@@ -345,7 +345,7 @@ export default {
     width: 100%;
     height: 100%;
     background-color: #b61924;
-    background-image: url('img/data/Foto Cover Bagian Belakang.jpg');
+    background-image: url('/img/data/Foto Cover Bagian Belakang.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50%;

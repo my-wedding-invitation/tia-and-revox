@@ -20,5 +20,6 @@ export default defineConfig({
   publicDir: 'public',
   optimizeDeps: {
     include: ['map-promisified']
-  }
+  },
+  assetsInclude: ['**/*.jpg', '**/*.png', '**/*.gif', '**/*.svg']
 })
