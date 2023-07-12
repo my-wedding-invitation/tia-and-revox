@@ -8,6 +8,7 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
+    "@fancyapps/ui": "^5.0.20",
     "@supabase/supabase-js": "^2.26.0",
     "date-fns": "^2.30.0",
     "lodash": "^4.17.21",

@@ -35,7 +35,7 @@
                         </div>
                         <div class="row mt-5 mb-5 text-center">
                             <div class="col-lg-12">
-                                <h2 style="font-family: 'Great Vibes', cursive;color: #9E5454;">Suprihatin Setia Ningsih, S.Pd</h2>
+                                <h2 id="tia" style="font-family: 'Great Vibes', cursive;color: #9E5454;">Suprihatin Setia Ningsih, S.Pd</h2>
                                 <h5>
                                     <i class="fa fa-instagram mr-1" style="color: #9E5454;transition: color 0.3s;"></i>
                                     <a href="https://instagram.com/tiulala_" target="_blank">@tiulala_</a>
@@ -48,7 +48,7 @@
                                     Ibu Siti Aminah
                                 </p>
                                 <h1 class="my-4" style="font-family: 'Great Vibes', cursive;color: #9E5454;">&</h1>
-                                <h2 style="font-family: 'Great Vibes', cursive;color: #9E5454;">Revox Rizkian</h2>
+                                <h2 id="revox" style="font-family: 'Great Vibes', cursive;color: #9E5454;">Revox Rizkian</h2>
                                 <h5>
                                     <i class="fa fa-instagram mr-1" style="color: #9E5454;transition: color 0.3s;"></i>
                                     <a href="https://instagram.com/revianrr" target="_blank">@revianrr</a>
@@ -109,11 +109,11 @@
                         </tbody>
                     </table>
                     <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Tia+%26+Revox+Wedding&location=Jl.+KH.+Sholeh+Iskandar+Kukupu+Blok+Binong+RT+01+RW+05%2C+Kelurahan+Cibadak%2C+Kecamatan+Tanah+Sereal%2C+Kota+Bogor&dates=20230723T020000Z%2F20230723T130000Z"
-                        class="btn mt-3" style="background-color: #9E5454; font-size: 12px; color: #fff;">
+                        class="btn mt-3 mb-3" style="background-color: #9E5454; font-size: 12px; color: #fff;">
                         <i class="fa fa-calendar"></i> Google Calendar
                     </a>
                     <div class="mt-3">
-                        <img class="img-fluid w-50" src="/img/data/basmalah.png" />
+                        <img class="img-fluid w-50" id="basmalah" src="/img/data/basmalah.png" />
                     </div>
                     <p class="mx-auto text-white mt-3 px-3">
                         "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
@@ -151,6 +151,92 @@
                                 <h4 class="mt-0">Juli 2023</h4>
                                 <h3 class="mt-4 mb-1" style="color: #9E5454;">12.00 WIB</h3>
                                 <h5>s.d. 20.00 WIB</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="location" class="container-fluid">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-lg-12 text-center wow h-100">
+                    <div class="container-fluid h-100">
+                        <div class="row" id="top">
+                            <div class="col-lg-12">
+                                <img class="img-fluid mt-5" src="/img/data/map.png" />
+                                <h3 class="mt-3">Bertempat Di</h3>
+                                <h1 class="mt-3" style="font-family: 'Great Vibes', cursive;color: #9E5454;">Mempelai Wanita</h1>
+                                <h5 class="mt-3">Jl. KH. Sholeh Iskandar Kukupu Blok Binong RT 01 RW 05, Kelurahan Cibadak, Kecamatan Tanah Sereal, Kota Bogor</h5>
+                                <iframe style="border:3px solid #9e5454;height: 250px;" class="mt-3 same-object" loading="lazy" src="https://maps.google.com/maps?q=Jl.%20KH.%20Sholeh%20Iskandar%20Kukupu%20Blok%20Binong%20RT%2001%20RW%2005,%20Kelurahan%20Cibadak,%20Kecamatan%20Tanah%20Sereal,%20Kota%20Bogor&t=m&z=15&output=embed&iwloc=near"></iframe>
+                                <br>
+                                <button class="btn text-white mt-3" style="background-color: #9e5454;">
+                                    <a class="text-white" href="https://maps.google.com/maps?q=Jl.%20KH.%20Sholeh%20Iskandar%20Kukupu%20Blok%20Binong%20RT%2001%20RW%2005,%20Kelurahan%20Cibadak,%20Kecamatan%20Tanah%20Sereal,%20Kota%20Bogor&t=m&z=15&output=embed&iwloc=near" target="_blank">Buka Map</a>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row" id="bottom">
+                            <div class="col-lg-12">
+                                <div id="streaming" class="mt-4 same-object"></div>
+                                <h3 class="mt-3">Kami Akan Melakukan</h3>
+                                <h1 class="mt-3" style="font-family: 'Great Vibes', cursive;color: #9E5454;">Live Streaming</h1>
+                                <h5 class="mt-3 mb-0">Momen kebahagiaan Akad dan Resepsi pernikahan kami secara virtual melalui Instagram.</h5>
+                                <a href="https://www.instagram.com/tiulala_/" target="_blank">
+                                    <img class="img-fluid w-50 mt-0 mb-4" id="instagram" src="/img/data/instagram.png" >
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <h3 class="text-white mt-3 mb-3">Hitung Mundur</h3>
+                    <h1 style="font-family: 'Great Vibes', cursive;color: #9E5454;">Menuju Hari Bahagia</h1>
+                    <div v-if="typeof(counter) == 'string'" style="font-size: 40px;">{{ counter }}</div>
+                    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Tia+%26+Revox+Wedding&location=Jl.+KH.+Sholeh+Iskandar+Kukupu+Blok+Binong+RT+01+RW+05%2C+Kelurahan+Cibadak%2C+Kecamatan+Tanah+Sereal%2C+Kota+Bogor&dates=20230723T020000Z%2F20230723T130000Z"
+                        class="btn mt-3" style="background-color: #9E5454; font-size: 12px; color: #fff;">
+                        <i class="fa fa-calendar"></i> Google Calendar
+                    </a>
+                    <div class="mt-3">
+                        <img class="img-fluid w-50" id="basmalah" src="/img/data/basmalah.png" />
+                    </div>
+                    <p class="mx-auto text-white mt-3 px-3">
+                        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+                    </p>
+                    <h3 style="font-family: 'Great Vibes', cursive;color: #9E5454;" class="text-white mb-5 mt-4">- Q.S Ar - Rum: 21 -</h3> -->
+                </div>
+            </div>
+        </section>
+        <section id="gallery" class="container-fluid">
+            <div class="row justify-content-center align-items-top">
+                <div class="col-lg-12">
+                    <div class="container-fluid">
+                        <div class="row mt-5">
+                            <div class="col-lg-12 text-center wow">
+                                <h3>Moment</h3>
+                                <h1 style="font-family: 'Great Vibes', cursive;margin: 30px 0px;color: #9E5454;">Bahagia Kami</h1>
+                                <div>"Mencintai bukan untuk menyamai, tetapi keikhlasan menerima perbedaan."</div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div ref="gallery" id="gallery-images">
+                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 1.jpg">
+                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 1.jpg" />
+                                </a>
+                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 2.jpg">
+                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 2.jpg" />
+                                </a>
+                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 3.jpg">
+                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 3.jpg" />
+                                </a>
+                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 4.jpg">
+                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 4.jpg" />
+                                </a>
+                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 5.jpg">
+                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 5.jpg" />
+                                </a>
+                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 6.jpg">
+                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 6.jpg" />
+                                </a>
+                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 7.jpg">
+                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 7.jpg" />
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -195,6 +281,8 @@
 import { Fragment } from 'vue-fragment';
 import { mapActions, mapState } from 'pinia'
 import { useGuestStore } from '@/store/guest'
+import { Fancybox } from '@fancyapps/ui';
+import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
 export default {
     name: 'Landing',
@@ -241,6 +329,7 @@ export default {
         this.registerParticleJS()
         this.registerParticleJS('-2')
         this.registerLottieJS()
+        this.registerGallery()
         this.countdownToDate('2023-07-23')
         $(this.$refs.open).modal('show')
         setTimeout(() => {
@@ -428,6 +517,13 @@ export default {
                 path: animationPath
             })
         },
+        registerGallery() {
+            Fancybox.bind(this.$refs.gallery, '[data-fancybox]', {
+                Carousel: {
+                    infinite: false,
+                }
+            });
+        },
         openInvitation() {
             $(this.$refs.open).modal('hide')
             this.toggleSong()
@@ -506,6 +602,13 @@ export default {
     #resepsi {
         margin-top: 3rem;
     }
+    #gallery-images {
+        display: block !important;
+    }
+    #gallery-images img {
+        width: 100%;
+        height: auto;
+    }
 }
 @media screen and (min-width: 767px) {
     #particles-js,
@@ -515,6 +618,21 @@ export default {
     }
     #cover {
         width: 10% !important;
+    }
+    #tia,
+    #revox {
+        font-size: 48px;
+    }
+    #basmalah {
+        width: 25% !important;
+    }
+    #instagram {
+        width: 20% !important;
+    }
+    .same-object {
+        height: 500px !important;
+        width: 100%;
+        background-position: 50% 40% !important;
     }
 }
 #player-wrapper {
@@ -542,5 +660,38 @@ export default {
 
 .start-stop:hover {
   color: #9E5454;
+}
+
+#location {
+    height: fit-content;
+    background-color: #9E5454;
+    padding: 25px 50px;
+}
+
+#top {
+    background-color: #ffffff;
+    border-top-left-radius: 14rem;
+    border-top-right-radius: 14rem;
+}
+
+#bottom {
+    background-color: #ffffff;
+    border-bottom-left-radius: 14rem;
+    border-bottom-right-radius: 14rem;
+}
+
+#streaming {
+    height: 250px;
+    width: 100%;
+    background: url('/img/data/Foto Live Streaming.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#gallery-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
 }
 </style>
