@@ -234,9 +234,6 @@
                                 <a data-fancybox="gallery" href="/img/data/Foto Galeri 6.jpg">
                                     <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 6.jpg" />
                                 </a>
-                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 7.jpg">
-                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 7.jpg" />
-                                </a>
                             </div>
                         </div>
                     </div>

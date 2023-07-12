@@ -16,11 +16,18 @@
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="ibox-content m-b-sm border-bottom">
                 <div class="row">
-                    <div class="col-sm-10">
+                    <div class="col-sm-8">
                         <div class="form-group mb-0">
                             <input type="text" v-model="table.filters.main.value" class="form-control"
                                 placeholder="Masukan Kata Kunci">
                         </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control" v-model="sent">
+                            <option value="">Semua</option>
+                            <option value="1">Sudah Dikirim</option>
+                            <option value="0">Belum Dikirim</option>
+                        </select>
                     </div>
                     <div class="col-sm-2">
                         <div class="d-flex justify-content-around">
@@ -43,7 +50,7 @@
                         <div class="ibox-content pb-0">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <v-table ref="table" :data="guests" :filters="table.filters"
+                                    <v-table ref="table" :data="filteredGuests" :filters="table.filters"
                                         :currentPage.sync="table.page" :pageSize="table.size"
                                         @totalPagesChanged="table.total = $event" selectedClass="table-warning"
                                         @selectionChanged="handleClickGuest" class="table table-striped table-bordered">
@@ -51,6 +58,7 @@
                                             <th>Name</th>
                                             <th>Phone</th>
                                             <th>Account</th>
+                                            <th>Sent</th>
                                             <th>Action</th>
                                         </thead>
                                         <tbody slot="body" slot-scope="{displayData}">
@@ -59,10 +67,18 @@
                                                 <td>{{ row.name }}</td>
                                                 <td>{{ row.phone }}</td>
                                                 <td>{{ row.account }}</td>
-                                                <td class="text-center"><i class="fa fa-chain" title="Copy Link" @click="copyLink(row)"></i></td>
+                                                <td>{{ row.sent ? 'Yes' : 'No' }}</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-default mr-2">
+                                                        <i class="fa fa-chain" title="Copy Link" @click="copyLink(row)"></i>
+                                                    </button>
+                                                    <button class="btn btn-default">
+                                                        <i :class="`fa fa-${row.sent ? 'close' : 'check'}`" :title="row.sent ? 'Unconfirm Sent' : 'Confirm Sent'" @click="confirmSent(row)"></i>
+                                                    </button>
+                                                </td>
                                             </v-tr>
                                             <v-tr v-if="displayData.length === 0" :row="{}">
-                                                <td colspan="4" class="text-center">There's No Data</td>
+                                                <td colspan="5" class="text-center">There's No Data</td>
                                             </v-tr>
                                         </tbody>
                                     </v-table>
@@ -149,13 +165,15 @@ export default {
     },
     data: () => ({
         selected: null,
+        sent: '',
         url: `${window.location.origin}/`,
         guest: {
             uuid: '',
             name: '',
             slug: '',
             phone: '',
-            account: ''
+            account: '',
+            sent: false
         },
         table: {
             page: 1,
@@ -171,6 +189,9 @@ export default {
     }),
     computed: {
         ...mapState(useGuestStore, ['guests']),
+        filteredGuests() {
+            return this.guests.filter(guest => this.sent != '' ? guest.sent == this.sent : true)
+        }
     },
     watch: {
         'guest.name': function (val) {
@@ -191,7 +212,8 @@ export default {
                 name: '',
                 slug: '',
                 phone: '',
-                account: ''
+                account: '',
+                sent: false
             }
             $(this.$refs.modal).modal('show')
         },
@@ -264,7 +286,32 @@ export default {
             tempInput.select()
             document.execCommand('copy')
             document.body.removeChild(tempInput)
-        }
+        },
+        confirmSent(guest) {
+            const vm = this
+            this.$Simplert.open({
+                title: '',
+                message: 'Apakah Kamu Yakin?',
+                type: '',
+                useConfirmBtn: true,
+                customCloseBtnText: 'Tidak',
+                customCloseBtnClass: 'btn btn-white',
+                customConfirmBtnText: 'Iya',
+                customConfirmBtnClass: 'btn btn-danger',
+                onConfirm() {
+                    vm.update(guest.uuid, { sent: !guest.sent })
+                        .then((resp) => {
+                            vm.$Simplert.open({
+                                title: '',
+                                message: `Konfirmasi ${resp ? 'Berhasil' : 'Gagal'}`,
+                                type: '',
+                                customCloseBtnClass: 'btn btn-success',
+                                customCloseBtnText: 'Close'
+                            })
+                        })
+                }
+            })
+        },
     },
 }
 </script>
