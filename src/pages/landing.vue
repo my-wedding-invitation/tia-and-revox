@@ -33,7 +33,7 @@
                                 <img class="img-fluid w-25" src="/img/data/Foto CPP.jpg"  style="-webkit-mask-image: url('/img/data/mask-photo.png');-webkit-mask-size: 100%;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;" />
                             </div>
                         </div>
-                        <div class="row mt-3 mb-5 text-center">
+                        <div class="row mt-4 mb-5 text-center">
                             <div class="col-lg-12">
                                 <h2 id="tia" style="font-family: 'Great Vibes', cursive;color: #9E5454;">Suprihatin Setia Ningsih, S.Pd</h2>
                                 <h5>
@@ -352,7 +352,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2">
-                                                                <button class="text-white btn btn-sm btn-primary float-right mt-2" style="background-color; #9E5454"><strong>Kirim</strong></button>
+                                                                <button class="text-white btn btn-sm btn-primary float-right mt-3" style="background-color; #9E5454 !important;max-height: 28px;"><strong>Kirim</strong></button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
