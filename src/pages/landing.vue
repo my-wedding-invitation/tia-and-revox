@@ -161,7 +161,7 @@
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-lg-12 text-center wow h-100">
                     <div class="container-fluid h-100">
-                        <div class="row" id="top">
+                        <div class="row mt-5" id="top">
                             <div class="col-lg-12">
                                 <img class="img-fluid mt-5" src="/img/data/map.png" />
                                 <h3 class="mt-3">Bertempat Di</h3>
@@ -174,7 +174,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="row" id="bottom">
+                        <div class="row mb-5" id="bottom">
                             <div class="col-lg-12">
                                 <div id="streaming" class="mt-4 same-object"></div>
                                 <h3 class="mt-3">Kami Akan Melakukan</h3>
@@ -186,20 +186,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <h3 class="text-white mt-3 mb-3">Hitung Mundur</h3>
-                    <h1 style="font-family: 'Great Vibes', cursive;color: #9E5454;">Menuju Hari Bahagia</h1>
-                    <div v-if="typeof(counter) == 'string'" style="font-size: 40px;">{{ counter }}</div>
-                    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Tia+%26+Revox+Wedding&location=Jl.+KH.+Sholeh+Iskandar+Kukupu+Blok+Binong+RT+01+RW+05%2C+Kelurahan+Cibadak%2C+Kecamatan+Tanah+Sereal%2C+Kota+Bogor&dates=20230723T020000Z%2F20230723T130000Z"
-                        class="btn mt-3" style="background-color: #9E5454; font-size: 12px; color: #fff;">
-                        <i class="fa fa-calendar"></i> Google Calendar
-                    </a>
-                    <div class="mt-3">
-                        <img class="img-fluid w-50" id="basmalah" src="/img/data/basmalah.png" />
-                    </div>
-                    <p class="mx-auto text-white mt-3 px-3">
-                        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
-                    </p>
-                    <h3 style="font-family: 'Great Vibes', cursive;color: #9E5454;" class="text-white mb-5 mt-4">- Q.S Ar - Rum: 21 -</h3> -->
                 </div>
             </div>
         </section>
@@ -214,26 +200,167 @@
                                 <div>"Mencintai bukan untuk menyamai, tetapi keikhlasan menerima perbedaan."</div>
                             </div>
                         </div>
+                        <div class="row mt-3 mb-3" ref="gallery">
+                            <div class="col-lg-12 mt-3">
+                                <video class="img-thumbnail" controls>
+                                    <source src="/img/data/Video Cinematic.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <a data-fancybox="gallery" href="/img/data/Foto Galeri 1.jpg">
+                                                <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 1.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <a data-fancybox="gallery" href="/img/data/Foto Galeri 2.jpg">
+                                                <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 2.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <a data-fancybox="gallery" href="/img/data/Foto Galeri 3.jpg">
+                                                <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 3.jpg" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <a data-fancybox="gallery" href="/img/data/Foto Galeri 4.jpg">
+                                                <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 4.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <a data-fancybox="gallery" href="/img/data/Foto Galeri 5.jpg">
+                                                <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 5.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <a data-fancybox="gallery" href="/img/data/Foto Galeri 6.jpg">
+                                                <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 6.jpg" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="timeline" class="container-fluid mt-5 text-white">
+            <div class="row justify-content-center align-items-top">
+                <div class="col-lg-12">
+                    <div class="container-fluid">
+                        <div class="row mt-5">
+                            <div class="col-lg-12 text-center wow">
+                                <h3>Sebuah Kisah</h3>
+                                <h1 style="font-family: 'Great Vibes', cursive;margin: 30px 0px;">Perjalanan Kami</h1>
+                                <div>Perjalanan yang tak terlupakan, dan perjalanan yang mengubah tujuan hidup kami.</div>
+                            </div>
+                        </div>
+                        <div class="row mt-3 mb-5">
+                            <div class="col-lg-12">
+                                <div id="vertical-timeline" class="vertical-container light-timeline">
+                                    <div class="vertical-timeline-block">
+                                        <div class="vertical-timeline-icon" style="background-color: #9E5454;">
+                                            <i class="fa fa-heartbeat"></i>
+                                        </div>
+                                        <div class="vertical-timeline-content">
+                                            <h2 style="color: #D68686;">Tahun 2017</h2>
+                                            <p style="color: #676a6c;">
+                                                Kenalan melalui Dating Apps dan pertama kali bertemu di Tahun 2017, udah merasa cocok, ngobrolnya seru tetapi memutuskan hanya untuk berteman saja, karna aku yang masih belum bisa Move On dari mantan hehe.
+                                                <br>Padahal waktu itu Mas udah seserius itu sampe nyamperin kerumah ku tapi mungkin memang belum waktunya jadi kandas deh..
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="vertical-timeline-block">
+                                        <div class="vertical-timeline-icon" style="background-color: #9E5454;">
+                                            <i class="fa fa-heartbeat"></i>
+                                        </div>
+                                        <div class="vertical-timeline-content">
+                                            <h2 style="color: #D68686;">Tahun 2021</h2>
+                                            <p style="color: #676a6c;">
+                                                Tapii entah gimana caranya Aku dan Mas bisa berkomunikasi kembali dan bertemu kembali setelah lost contact selama kurang lebih 5 tahun.
+                                                <br>Dan memutuskan untuk berkomitmen tanpa pernyataan "Kamu mau nggak jadi pacar aku?"  Karna jujur aja sampe sekarang Mas Nggak pernah bilang kaya gitu jadi kita nggak ada Hari Jadian untuk dirayakan...
+                                                <br>Tapi dalam menjalani hubungan yg berkomitmen itu juga tentu aja nggak mulus, banyak masalah, ujian, cobaan entah dari calon orang ketiga, perbedaan pendapat dan lain sebagainya.
+                                                <br>Tetapi Alhamdulillah dengan komitmen dan niat yang kita ucap satu sama lain buat terus bersama menghabiskan waktu sampai akhir,
+                                                <br>Dengan dan bagaimana pun keadaan kita satu sama lain, Kurang dan Lebihnya dari diri kita, baik dan buruk sikap dan sifat kita, Alhamdulillah kita bisa melalui sampai ke tahap selanjutnya…
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="vertical-timeline-block">
+                                        <div class="vertical-timeline-icon" style="background-color: #9E5454;">
+                                            <i class="fa fa-heartbeat"></i>
+                                        </div>
+                                        <div class="vertical-timeline-content">
+                                            <h2 style="color: #D68686;">Tahun 2023</h2>
+                                            <p style="color: #676a6c;">
+                                                Ditahun 2023 ini kami memutuskan untuk meresmikan komitmen ini dengan Acara Lamaran pada Tanggal 5 Maret 2023 dengan dihadiri oleh Keluarga serta kerabat dekat dari Mas dan Aku,
+                                                <br>Dimana Mas menyatakan langsung didepan Kedua Orang Tua, Keluarga dan Kerabat untuk menjadikan aku sebagai Istrinya, Sumber Kebahagiannya, Madrasah Pertama dari calon Penerusnya,
+                                                <br>Dan Menjadi Wanita yang menemani di Hari Tua nya Nanti..
+                                                <br>Dan Atas Izin Allah Serta Atas Restu Kedua Orang Tua Mas dan Aku,
+                                                <br>Bismillah Kami akan Melangsungkan Pernikahan dan saling berjanji untuk mengarungi bahtera rumah tangga bagaimana pun keadaannya Di tanggal 23 Juli 2023…
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="reservasi" class="container-fluid">
+            <div class="row justify-content-center align-items-top">
+                <div class="col-lg-12">
+                    <div class="container-fluid">
                         <div class="row mt-3">
-                            <div ref="gallery" id="gallery-images">
-                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 1.jpg">
-                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 1.jpg" />
-                                </a>
-                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 2.jpg">
-                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 2.jpg" />
-                                </a>
-                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 3.jpg">
-                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 3.jpg" />
-                                </a>
-                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 4.jpg">
-                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 4.jpg" />
-                                </a>
-                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 5.jpg">
-                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 5.jpg" />
-                                </a>
-                                <a data-fancybox="gallery" href="/img/data/Foto Galeri 6.jpg">
-                                    <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 6.jpg" />
-                                </a>
+                            <div class="col-lg-12 text-center wow">
+                                <h1 style="font-family: 'Great Vibes', cursive;color: #9E5454;margin: 30px 0px;">Reservasi</h1>
+                            </div>
+                        </div>
+                        <div class="row mt-3 mb-5">
+                            <div class="col-lg-12">
+                                <div class="ibox">
+                                    <div class="ibox-content pb-0">
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label>Nama</label>
+                                                <input type="nama" placeholder="Masukan Nama" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Jumlah Tamu</label>
+                                                <input type="number" placeholder="Masukan Jumlah Tamu" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Konfirmasi</label>
+                                                <table class="w-100">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="pr-1"><input type="radio" style="font-size: 3px;" class="form-control" value="1" name="reservation"></td>
+                                                            <td>Iya, Saya Akan Datang</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pr-1"><input type="radio" style="font-size: 3px;" class="form-control" value="0" name="reservation"></td>
+                                                            <td>Maaf, Saya Tidak Bisa Datang</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <button class="btn btn-sm btn-primary float-right mt-2" ><strong>Kirim</strong></button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -599,13 +726,6 @@ export default {
     #resepsi {
         margin-top: 3rem;
     }
-    #gallery-images {
-        display: block !important;
-    }
-    #gallery-images img {
-        width: 100%;
-        height: auto;
-    }
 }
 @media screen and (min-width: 767px) {
     #particles-js,
@@ -662,7 +782,12 @@ export default {
 #location {
     height: fit-content;
     background-color: #9E5454;
-    padding: 25px 50px;
+    clip-path: polygon(100% 0, 100% 98.5%, 50% 100%, 0 98.5%, 0 0, 50% 1.5%);
+}
+
+#timeline {
+    background-color: #9E5454;
+    clip-path: polygon(100% 0, 100% 98.5%, 50% 100%, 0 98.5%, 0 0, 50% 1.5%);
 }
 
 #top {
@@ -686,9 +811,11 @@ export default {
     background-size: cover;
 }
 
-#gallery-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
+.vertical-timeline-icon {
+    top: calc(50% - 15px) !important;
+}
+
+.vertical-timeline-content::before {
+    top: 50% !important;
 }
 </style>
