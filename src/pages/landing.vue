@@ -66,7 +66,7 @@
                 </div>
             </div>
         </section>
-        <section id="counter" class="container-fluid">
+        <section id="counter" class="container-fluid w-100">
             <div id="particles-js-2"></div>
             <div id="overlay-2"></div>
             <div id="overlay-3"></div>
@@ -202,7 +202,7 @@
                         </div>
                         <div class="row mt-3 mb-3" ref="gallery">
                             <div class="col-lg-12 mt-3">
-                                <video class="img-thumbnail" controls>
+                                <video class="img-thumbnail w-100" controls>
                                     <source src="/img/data/Video Cinematic.mp4" type="video/mp4">
                                 </video>
                             </div>
