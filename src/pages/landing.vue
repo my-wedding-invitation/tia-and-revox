@@ -167,10 +167,10 @@
                                 <h3 class="mt-3">Bertempat Di</h3>
                                 <h1 class="mt-3" style="font-family: 'Great Vibes', cursive;color: #9E5454;">Mempelai Wanita</h1>
                                 <h5 class="mt-3">Jl. KH. Sholeh Iskandar Kukupu Blok Binong RT 01 RW 05, Kelurahan Cibadak, Kecamatan Tanah Sereal, Kota Bogor</h5>
-                                <iframe style="border:3px solid #9e5454;height: 250px;" class="mt-3 same-object" loading="lazy" src="https://maps.google.com/maps?q=Jl.%20KH.%20Sholeh%20Iskandar%20Kukupu%20Blok%20Binong%20RT%2001%20RW%2005,%20Kelurahan%20Cibadak,%20Kecamatan%20Tanah%20Sereal,%20Kota%20Bogor&t=m&z=15&output=embed&iwloc=near"></iframe>
+                                <iframe style="border:3px solid #9e5454;height: 250px;max-width: 100%;" class="mt-3 same-object" loading="lazy" src="https://maps.google.com/maps?q=Warung+Ibu+Tia,+Cibadak,+Kec.+Tanah+Sereal,+Kota+Bogor,+Jawa+Barat&t=m&z=15&output=embed&iwloc=near"></iframe>
                                 <br>
                                 <button class="btn text-white mt-3" style="background-color: #9e5454;">
-                                    <a class="text-white" href="https://maps.google.com/maps?q=Jl.%20KH.%20Sholeh%20Iskandar%20Kukupu%20Blok%20Binong%20RT%2001%20RW%2005,%20Kelurahan%20Cibadak,%20Kecamatan%20Tanah%20Sereal,%20Kota%20Bogor&t=m&z=15&output=embed&iwloc=near" target="_blank">Buka Map</a>
+                                    <a class="text-white" href="https://www.google.com/maps/place/Warung+Ibu+Tia,+Cibadak,+Kec.+Tanah+Sereal,+Kota+Bogor,+Jawa+Barat/data=!4m2!3m1!1s0x2e69c47f7d52249f:0xee6cfa7855a6128f?utm_source=mstt_1&entry=gps&lucs=47068615&g_ep=CAESCjExLjgxLjE1MDIYACDXggMqCDQ3MDY4NjE1QgJJRA%3D%3D" target="_blank">Buka Map</a>
                                 </button>
                             </div>
                         </div>
