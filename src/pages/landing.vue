@@ -677,6 +677,9 @@ export default {
 }
 </script>
 <style scoped>
+html, body {
+    overflow: hidden;
+}
 #particles-js,
 #particles-js-2,
 #particles-js-3 {
