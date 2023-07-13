@@ -380,7 +380,7 @@
                                         <img class="img-fluid w-25" src="/img/data/bca.png">
                                         <h3 style="margin-top: -10px;color: #676a6c;">a/n Suprihatin Setia</h3>
                                         <h3 class="text-bold">8720390486</h3>
-                                        <button class="btn kawaii mb-4 mt-2 text-white" @click="copy(8720390486)">
+                                        <button class="btn kawaii mb-4 mt-2 text-white" @click="copyText">
                                             <i class="fa fa-copy mr-1"></i> Salin
                                         </button>
                                     </div>
@@ -750,6 +750,14 @@ export default {
                     customCloseBtnText: 'Tutup'
                 })
             }
+        },
+        copyText() {
+            const textField = document.createElement('textarea')
+            textField.innerText = '8720390486'
+            document.body.appendChild(textField)
+            textField.select()
+            document.execCommand('copy')
+            textField.remove()
         }
     }
 }
