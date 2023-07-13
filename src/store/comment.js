@@ -14,9 +14,10 @@ export const useCommentStore = defineStore('comment', {
             }
             return Promise.resolve(false)
         },
-        async read() {
+        async read(callback) {
             try {
                 const data = await comment.read()
+                if (typeof callback === 'function') callback(data)
                 if (data) this.comments = data
             } catch (e) {}
         },

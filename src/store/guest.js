@@ -14,9 +14,10 @@ export const useGuestStore = defineStore('guest', {
             }
             return Promise.resolve(false)
         },
-        async read() {
+        async read(callback) {
             try {
                 const data = await guest.read()
+                if (typeof callback === 'function') return callback(data)
                 if (data) this.guests = data
             } catch (e) {}
         },

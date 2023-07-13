@@ -391,6 +391,83 @@
                 </div>
             </div>
         </section>
+        <section id="comment" class="container-fluid">
+            <div class="row justify-content-center align-items-top">
+                <div class="col-lg-12">
+                    <div class="container-fluid">
+                        <div class="row mt-3">
+                            <div class="col-lg-12 text-center wow">
+                                <h1 style="font-family: 'Great Vibes', cursive;color: #9E5454;margin: 30px 0px;">Do'a & Ucapan</h1>
+                                <h5 class="text-muted">Kami merasa sangat terhormat dan bahagia dengan kehadiran Bapak/Ibu/Saudara/i yang berkenan hadir, memberikan sentuhan do'a restu kepada kami.</h5>
+                            </div>
+                        </div>
+                        <div class="row mt-3 mb-3">
+                            <div class="col-lg-12">
+                                <div class="ibox">
+                                    <div class="ibox-title p-3">
+                                        <div class="ibox mb-2">
+                                            <div class="ibox-content">
+                                                <table class="w-100" v-if="currentCommentShow.hasOwnProperty('uuid')">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td @click="handlePrev">
+                                                                <i class="fa fa-angle-left"></i>
+                                                            </td>
+                                                            <td>
+                                                                <div class="social-avatar pt-0 w-100">
+                                                                    <a href="" class="float-left">
+                                                                        <img alt="image" :src="`https://ui-avatars.com/api/?name=${currentCommentShow.name.split(' ').join('+')}`">
+                                                                    </a>
+                                                                    <div class="media-body">
+                                                                        <a href="#" style="color: #676a6c;">{{ currentCommentShow.name }}</a>
+                                                                        <small class="text-muted">
+                                                                            <a style="font-size: 10px;" :href="`https://instagram.com/${currentCommentShow.account.replace('@', '')}`" v-if="currentCommentShow.account" target="_blank">{{ currentCommentShow.account }}</a>
+                                                                            {{ format(new Date(currentCommentShow.date), 'dd MMMM yyyy, HH:mm') }}
+                                                                        </small>
+                                                                        <p class="mt-2">{{ currentCommentShow.content }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td @click="handleNext">
+                                                                <i class="fa fa-angle-right"></i>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <p v-else class="mb-0 text-center">Belum Ada Ucapan, Jadilah Yang Pertama</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content pb-0">
+                                        <form role="form" @submit.prevent="handleSubmitComment">
+                                            <div class="form-group">
+                                                <label>Nama</label>
+                                                <input type="nama" class="form-control" disabled v-model="guests.name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Ucapan</label>
+                                                <textarea class="form-control" style="min-height: 100px;max-height: 100px;" v-model="comment.form.content" :disabled="!comment.form.uuid"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <table class="w-100">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <button class="text-white btn btn-xs float-right mt-3" style="background-color: #9E5454;" :disabled="!comment.form.uuid"><strong>Kirim</strong></button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div ref="open" class="modal inmodal fade p-0" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg p-0 m-0 h-100" style="max-width: 100%; max-height: 100%;">
                 <div class="modal-content h-100" style="background-color: rgba(0, 0, 0, 0.7);">
@@ -427,11 +504,13 @@
 </template>
 <script>
 import { Fragment } from 'vue-fragment'
+import format from 'date-fns/format'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
 import { mapActions, mapState } from 'pinia'
 import { useGuestStore } from '@/store/guest'
 import { useReservationStore } from '@/store/reservation'
+import { useCommentStore } from '@/store/comment'
 import { Fancybox } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
@@ -441,9 +520,23 @@ export default {
         'app-fragment': Fragment
     },
     async created() {
+        this.readGuest((guests) => {
+            this.allGuests = guests
+        })
+        await this.readComment()
         if (this.$route.query.to) {
             await this.slug(this.$route.query.to)
             if (this.guests) {
+                const form = this.comments.find(comment => comment.uuid == this.guests.uuid)
+                if (!form) {
+                    this.comment.form = {
+                        uuid: this.guests.uuid,
+                        content: '',
+                        date: '',
+                    }
+                } else {
+                    this.comment.form = cloneDeep(form)
+                }
                 await this.uuid(this.guests.uuid)
                 if (!isEmpty(this.reservations)) {
                     this.reservation = cloneDeep(this.reservations)
@@ -455,6 +548,7 @@ export default {
     },
     data() {
         return {
+            allGuests: [],
             counter: '',
             song: {
                 id: '7azGGgUEEGY',
@@ -465,6 +559,14 @@ export default {
                 uuid: '',
                 count: 1,
                 present: true,
+            },
+            comment: {
+                curr: 0,
+                form: {
+                    uuid: '',
+                    content: '',
+                    date: '',
+                }
             }
         }
     },
@@ -511,19 +613,37 @@ export default {
     },
     computed: {
         ...mapState(useGuestStore, ['guests']),
+        ...mapState(useCommentStore, ['comments']),
         ...mapState(useReservationStore, ['reservations']),
         reservationValid() {
             if (!this.guests) return false
             if (this.reservation.present && this.reservation.count === 0) return false
             return true
+        },
+        currentCommentShow() {
+            if (this.comments.length === 0) return {}
+            const comment = this.comments.sort((a, b) => new Date(b.date) - new Date(a.date))[this.comment.curr]
+            const guest = this.allGuests.find(g => g.uuid == comment.uuid)
+            return {
+                ...comment,
+                ...guest,
+            }
         }
     },
     methods: {
-        ...mapActions(useGuestStore, ['slug']),
+        ...mapActions(useGuestStore, {
+            slug: 'slug',
+            readGuest: 'read',
+        }),
         ...mapActions(useReservationStore, {
             uuid: 'uuid',
             createReservation: 'create',
             updateReservation: 'update',
+        }),
+        ...mapActions(useCommentStore, {
+            readComment: 'read',
+            createComment: 'create',
+            updateComment: 'update',
         }),
         countdownToDate(targetDate) {
             var self = this
@@ -758,7 +878,46 @@ export default {
             textField.select()
             document.execCommand('copy')
             textField.remove()
-        }
+        },
+        format,
+        handlePrev() {
+            if (this.comment.curr == 0) return
+            this.comment.curr -= 1
+        },
+        handleNext() {
+            if (this.comment.curr == this.comments.length - 1) return
+            this.comment.curr += 1
+        },
+        async handleSubmitComment() {
+            if (this.comment.form.date) {
+                const payload = cloneDeep(this.comment.form)
+                const uuid = payload.uuid
+                delete payload.uuid
+                const success = await this.updateComment(uuid, payload)
+                this.$Simplert.open({
+                    title: '',
+                    message: `Ucapan ${success ? 'Terkirim' : 'Tidak Terkirim'}`,
+                    type: '',
+                    customCloseBtnClass: 'btn btn-success kawaii',
+                    customCloseBtnText: 'Tutup'
+                })
+            } else {
+                const payload = cloneDeep(this.comment.form)
+                delete payload.date
+                const success = await this.createComment(payload)
+                if (success) {
+                    const comment = cloneDeep(this.comments.find(comment => comment.uuid == payload.uuid))
+                    this.comment.form = comment
+                }
+                this.$Simplert.open({
+                    title: '',
+                    message: `Ucapan ${success ? 'Terkirim' : 'Tidak Terkirim'}`,
+                    type: '',
+                    customCloseBtnClass: 'btn btn-success kawaii',
+                    customCloseBtnText: 'Tutup'
+                })
+            }
+        },
     }
 }
 </script>
