@@ -404,6 +404,7 @@
 <script>
 import { Fragment } from 'vue-fragment'
 import cloneDeep from 'lodash/cloneDeep'
+import isEmpty from 'lodash/isEmpty'
 import { mapActions, mapState } from 'pinia'
 import { useGuestStore } from '@/store/guest'
 import { useReservationStore } from '@/store/reservation'
@@ -420,7 +421,7 @@ export default {
             await this.slug(this.$route.query.to)
             if (this.guests) {
                 await this.uuid(this.guests.uuid)
-                if (this.reservations) {
+                if (!isEmpty(this.reservations)) {
                     this.reservation = cloneDeep(this.reservations)
                 } else {
                     this.reservation.uuid = this.guests.uuid
