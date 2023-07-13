@@ -201,7 +201,7 @@
                             </div>
                         </div>
                         <div class="row mt-3 mb-3" ref="gallery">
-                            <div class="col-lg-12 mt-3 mx-0">
+                            <div class="col-lg-12 mt-3 px-0">
                                 <video class="img-thumbnail w-100" controls>
                                     <source src="/img/data/Video Cinematic.mp4" type="video/mp4">
                                 </video>
@@ -498,8 +498,8 @@ export default {
         ...mapActions(useGuestStore, ['slug']),
         ...mapActions(useReservationStore, {
             uuid: 'uuid',
-            updateReservation: 'update',
             createReservation: 'create',
+            updateReservation: 'update',
         }),
         countdownToDate(targetDate) {
             var self = this
@@ -704,7 +704,7 @@ export default {
             this.reservation[key] = typeof value == 'boolean' ? value : parseInt(value)
         },
         async handleSubmitReservation() {
-            if (this.reservations) {
+            if (!isEmpty(this.reservations)) {
                 const payload = cloneDeep(this.reservation)
                 const uuid = payload.uuid
                 delete payload.uuid
