@@ -6,6 +6,13 @@ export default function(api) {
                 .select()
             return data
         },
+        async uuid(uuid) {
+            const { data } = await api
+                .from('reservations')
+                .select()
+                .eq('uuid', uuid)
+            return data.length ? data[0] : {}
+        },
         async create(reservation) {
             const { data } = await api
                 .from('reservations')

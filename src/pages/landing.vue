@@ -70,7 +70,7 @@
             <div id="particles-js-2"></div>
             <div id="overlay-2"></div>
             <div id="overlay-3"></div>
-            <div class="row justify-content-center align-items-center">
+            <div class="row justify-content-center align-items-center w-100 mx-0">
                 <div class="col-lg-12 text-center wow zoomIn animated mt-5" style="position: relative;">
                     <img class="im-fluid" id="botanical" style="width: 5%;" src="/img/data/Botanical-line-Art-white-1.png" />
                     <h3 class="text-white mt-3 mb-3">Hitung Mundur</h3>
@@ -201,7 +201,7 @@
                             </div>
                         </div>
                         <div class="row mt-3 mb-3" ref="gallery">
-                            <div class="col-lg-12 mt-3">
+                            <div class="col-lg-12 mt-3 mx-0">
                                 <video class="img-thumbnail w-100" controls>
                                     <source src="/img/data/Video Cinematic.mp4" type="video/mp4">
                                 </video>
@@ -329,30 +329,30 @@
                             <div class="col-lg-12">
                                 <div class="ibox">
                                     <div class="ibox-content pb-0">
-                                        <form role="form">
+                                        <form role="form" @submit.prevent="handleSubmitReservation">
                                             <div class="form-group">
                                                 <label>Nama</label>
-                                                <input type="nama" placeholder="Masukan Nama" class="form-control">
+                                                <input type="nama" class="form-control" disabled v-model="guests.name">
                                             </div>
                                             <div class="form-group">
                                                 <label>Jumlah Tamu</label>
-                                                <input type="number" placeholder="Masukan Jumlah Tamu" class="form-control">
+                                                <input ref="count" type="number" v-model="reservation.count" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label>Konfirmasi</label>
                                                 <table class="w-100">
                                                     <tbody>
                                                         <tr>
-                                                            <td class="pr-1"><input type="radio" style="font-size: 3px;" class="form-control" value="1" name="reservation"></td>
+                                                            <td class="pr-2" style="width: 14px;"><input v-model="reservation.present" ref="present" type="radio" style="font-size: 3px;" class="form-control" :value="true" name="reservation"></td>
                                                             <td>Iya, Saya Akan Datang</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pr-1"><input type="radio" style="font-size: 3px;" class="form-control" value="0" name="reservation"></td>
+                                                            <td class="pr-2" style="width: 14px;"><input v-model="reservation.present" ref="present" type="radio" style="font-size: 3px;" class="form-control" :value="false" name="reservation"></td>
                                                             <td>Maaf, Saya Tidak Bisa Datang</td>
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2">
-                                                                <button class="text-white btn btn-sm btn-primary float-right mt-3" style="background-color; #9E5454 !important;max-height: 28px;"><strong>Kirim</strong></button>
+                                                                <button class="text-white btn btn-xs float-right mt-3" style="background-color: #9E5454;" :disabled="!reservationValid"><strong>Kirim</strong></button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -402,9 +402,11 @@
     </app-fragment>
 </template>
 <script>
-import { Fragment } from 'vue-fragment';
+import { Fragment } from 'vue-fragment'
+import cloneDeep from 'lodash/cloneDeep'
 import { mapActions, mapState } from 'pinia'
 import { useGuestStore } from '@/store/guest'
+import { useReservationStore } from '@/store/reservation'
 import { Fancybox } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
@@ -413,9 +415,17 @@ export default {
     components: {
         'app-fragment': Fragment
     },
-    created() {
+    async created() {
         if (this.$route.query.to) {
-            this.slug(this.$route.query.to)
+            await this.slug(this.$route.query.to)
+            if (this.guests) {
+                await this.uuid(this.guests.uuid)
+                if (this.reservations) {
+                    this.reservation = cloneDeep(this.reservations)
+                } else {
+                    this.reservation.uuid = this.guests.uuid
+                }
+            }
         }
     },
     data() {
@@ -426,6 +436,11 @@ export default {
                 play: false,
                 player: null,
             },
+            reservation: {
+                uuid: '',
+                count: 1,
+                present: true,
+            }
         }
     },
     mounted() {
@@ -471,9 +486,20 @@ export default {
     },
     computed: {
         ...mapState(useGuestStore, ['guests']),
+        ...mapState(useReservationStore, ['reservations']),
+        reservationValid() {
+            if (!this.guests) return false
+            if (this.reservation.present && this.reservation.count === 0) return false
+            return true
+        }
     },
     methods: {
         ...mapActions(useGuestStore, ['slug']),
+        ...mapActions(useReservationStore, {
+            uuid: 'uuid',
+            updateReservation: 'update',
+            createReservation: 'create',
+        }),
         countdownToDate(targetDate) {
             var self = this
             var targetTime = new Date(targetDate).getTime()
@@ -672,21 +698,44 @@ export default {
                 this.song.player.seekTo(0)
                 this.song.player.playVideo()
             }
+        },
+        handleWriteReservation(key, value) {
+            this.reservation[key] = typeof value == 'boolean' ? value : parseInt(value)
+        },
+        async handleSubmitReservation() {
+            if (this.reservations) {
+                const payload = cloneDeep(this.reservation)
+                const uuid = payload.uuid
+                delete payload.uuid
+                const success = await this.updateReservation(uuid, payload, 'replace')
+                this.$Simplert.open({
+                    title: '',
+                    message: `Reservasi ${success ? 'Berhasil' : 'Gagal'}`,
+                    type: '',
+                    customCloseBtnClass: 'btn btn-success kawaii',
+                    customCloseBtnText: 'Tutup'
+                })
+            } else {
+                const reservation = await this.createReservation(this.reservation, 'replace')
+                this.$Simplert.open({
+                    title: '',
+                    message: `Reservasi ${reservation ? 'Berhasil' : 'Gagal'}`,
+                    type: '',
+                    customCloseBtnClass: 'btn btn-success kawaii',
+                    customCloseBtnText: 'Tutup'
+                })
+            }
         }
     }
 }
 </script>
-<style scoped>
-html, body {
-    overflow: hidden;
-}
+<style>
 #particles-js,
 #particles-js-2,
 #particles-js-3 {
     position: absolute;
     width: 100%;
     height: 100%;
-    max-width: 100%;
     background-color: #b61924;
     background-image: url('/img/data/Foto Cover Bagian Belakang.jpg');
     background-repeat: no-repeat;
@@ -715,6 +764,7 @@ html, body {
     position: relative;
     width: 100%;
     height: fit-content;
+    padding: 0px !important;
 }
 #lottie-container path {
   fill: #b61924; /* Change the fill color to blue */
@@ -821,5 +871,10 @@ html, body {
 
 .vertical-timeline-content::before {
     top: 50% !important;
+}
+
+.kawaii {
+    background-color: #9E5454 !important;
+    border-color: #9E5454 !important;
 }
 </style>

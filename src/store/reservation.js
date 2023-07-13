@@ -5,11 +5,16 @@ export const useReservationStore = defineStore('reservation', {
     state: () => ({
         reservations: []
     }),
+
     actions: {
-        async create(payload) {
+        async create(payload, action = 'push') {
             const data = await reservation.create(payload)
             if (data) {
-                this.reservations.push(data)
+                if (action == 'push') {
+                    this.reservations.push(data)
+                } else {
+                    this.reservations = data
+                }
                 return Promise.resolve(data)
             }
             return Promise.resolve(false)
@@ -20,13 +25,23 @@ export const useReservationStore = defineStore('reservation', {
                 if (data) this.reservations = data
             } catch (e) {}
         },
-        async update(uuid, payload) {
+        async uuid(uuid) {
+            try {
+                const data = await reservation.uuid(uuid)
+                if (data) this.reservations = data
+            } catch (e) {}
+        },
+        async update(uuid, payload, action = 'push') {
             const data = await reservation.update(uuid, payload)
             if (data) {
-                const reservations = [...this.reservations]
-                const index = reservations.findIndex(reservation => reservation.uuid === uuid)
-                reservations[index] = data
-                this.reservations = reservations
+                if (action == 'push') {
+                    const reservations = [...this.reservations]
+                    const index = reservations.findIndex(reservation => reservation.uuid === uuid)
+                    reservations[index] = data
+                    this.reservations = reservations
+                } else {
+                    this.reservations = data
+                }
                 return Promise.resolve(true)
             }
             return Promise.resolve(false)
@@ -40,6 +55,6 @@ export const useReservationStore = defineStore('reservation', {
                 return Promise.resolve(true)
             }
             return Promise.resolve(false)
-        }
+        },
     }
 })

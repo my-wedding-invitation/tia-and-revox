@@ -57,7 +57,7 @@
                                                 v-if="displayData.length">
                                                 <td>{{ row.name }}</td>
                                                 <td>{{ row.count }}</td>
-                                                <td>{{ row.present }}</td>
+                                                <td>{{ row.present ? 'Yes' : 'No' }}</td>
                                             </v-tr>
                                             <v-tr v-if="displayData.length === 0" :row="{}">
                                                 <td colspan="3" class="text-center">There's No Data</td>
@@ -196,7 +196,7 @@ export default {
             this.reservation = {
                 uuid: '',
                 count: '',
-                prsent: 'Yes'
+                present: 'Yes'
             }
             $(this.$refs.modal).modal('show')
         },
