@@ -325,7 +325,7 @@
                                 <h1 style="font-family: 'Great Vibes', cursive;color: #9E5454;margin: 30px 0px;">Reservasi</h1>
                             </div>
                         </div>
-                        <div class="row mt-3 mb-5">
+                        <div class="row mt-3 mb-3">
                             <div class="col-lg-12">
                                 <div class="ibox">
                                     <div class="ibox-content pb-0">
@@ -359,6 +359,30 @@
                                                 </table>
                                             </div>
                                         </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="gift" class="container-fluid">
+            <div class="row justify-content-center align-items-top">
+                <div class="col-lg-12">
+                    <div class="container-fluid">
+                        <div class="row mt-3 mb-3">
+                            <div class="col-lg-12 text-center wow">
+                                <h1 class="text-white" style="font-family: 'Great Vibes', cursive;margin: 30px 0px;">Berbagi Kebahagiaan</h1>
+                                <h5 class="text-white">Doa restu yang dipanjatkan oleh keluarga, sahabat, dan seluruh rekan-rekan kami menjadi suatu berkah yang tak ternilai dalam pernikahan kami. Namun, jika kebaikan diwujudkan dalam bentuk hadiah, kami dengan gembira akan menerimanya, yang tak lain akan menambah kesempurnaan kebahagiaan kami.</h5>
+                                <div class="ibox mt-5">
+                                    <div class="ibox-content p-0"  style="border-radius: 10px;">
+                                        <img class="img-fluid w-25" src="/img/data/bca.png">
+                                        <h3 style="margin-top: -10px;color: #676a6c;">a/n Suprihatin Setia</h3>
+                                        <h3 class="text-bold">8720390486</h3>
+                                        <button class="btn kawaii mb-4 mt-2 text-white" @click="copy(8720390486)">
+                                            <i class="fa fa-copy mr-1"></i> Salin
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -840,7 +864,8 @@ export default {
     clip-path: polygon(100% 0, 100% 98.5%, 50% 100%, 0 98.5%, 0 0, 50% 1.5%);
 }
 
-#timeline {
+#timeline,
+#gift {
     background-color: #9E5454;
     clip-path: polygon(100% 0, 100% 98.5%, 50% 100%, 0 98.5%, 0 0, 50% 1.5%);
 }
