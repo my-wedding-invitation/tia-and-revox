@@ -990,6 +990,7 @@ export default {
     width: 100%;
     height: fit-content;
     padding: 0px !important;
+    overflow: hidden;
 }
 #lottie-container path {
   fill: #b61924; /* Change the fill color to blue */
