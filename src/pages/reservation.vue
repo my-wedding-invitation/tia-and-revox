@@ -48,6 +48,7 @@
                                         @totalPagesChanged="table.total = $event" selectedClass="table-warning"
                                         @selectionChanged="handleClickReservation" class="table table-striped table-bordered">
                                         <thead slot="head">
+                                            <th>Guest</th>
                                             <th>Name</th>
                                             <th>Number</th>
                                             <th>Present</th>
@@ -55,12 +56,13 @@
                                         <tbody slot="body" slot-scope="{displayData}">
                                             <v-tr v-for="row in displayData" :key="row.id" :row="row"
                                                 v-if="displayData.length">
+                                                <td>{{ row.guest }}</td>
                                                 <td>{{ row.name }}</td>
                                                 <td>{{ row.count }}</td>
                                                 <td>{{ row.present ? 'Yes' : 'No' }}</td>
                                             </v-tr>
                                             <v-tr v-if="displayData.length === 0" :row="{}">
-                                                <td colspan="3" class="text-center">There's No Data</td>
+                                                <td colspan="4" class="text-center">There's No Data</td>
                                             </v-tr>
                                         </tbody>
                                     </v-table>
@@ -91,11 +93,15 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label>Name</label>
+                                <div class="col-lg-6">
+                                    <label>Guest</label>
                                     <select class="form-control" v-model="reservation.uuid" :disabled="edit">
                                         <option v-for="guest in filteredGuests" :value="guest.uuid">{{ guest.name }}</option>
                                     </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" v-model="reservation.name">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -107,8 +113,8 @@
                                 <div class="col-lg-6">
                                     <label>Present</label>
                                     <select class="form-control" v-model="reservation.present">
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                        <option :value="true">Yes</option>
+                                        <option :value="false">No</option>
                                     </select>
                                 </div>
                             </div>
@@ -147,8 +153,9 @@ export default {
         edit: false,
         reservation: {
             uuid: '',
+            name: '',
             count: '',
-            present: 'Yes'
+            present: true
         },
         table: {
             page: 1,
@@ -157,7 +164,7 @@ export default {
             filters: {
                 main: {
                     value: '',
-                    keys: ['name', 'count', 'present']
+                    keys: ['guest', 'name', 'count', 'present']
                 },
             }
         }
@@ -171,7 +178,7 @@ export default {
                 const { name } = this.guests.find(guest => guest.uuid === reservation.uuid)
                 return {
                     ...reservation,
-                    name,
+                    guest: name,
                 }
             })
         },
@@ -195,8 +202,9 @@ export default {
             this.edit = false
             this.reservation = {
                 uuid: '',
+                name: '',
                 count: '',
-                present: 'Yes'
+                present: true
             }
             $(this.$refs.modal).modal('show')
         },
@@ -210,7 +218,6 @@ export default {
         handleEditReservation() {
             this.edit = true
             this.reservation = cloneDeep(this.selected)
-            delete this.reservation.name
             $(this.$refs.modal).modal('show')
         },
         async handleClickSave() {
@@ -218,6 +225,7 @@ export default {
             if (this.edit) {
                 const uuid = payload.uuid
                 delete payload.uuid
+                delete payload.guest
                 const success = await this.updateReservation(uuid, payload)
                 this.$Simplert.open({
                     title: '',

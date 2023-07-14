@@ -332,7 +332,7 @@
                                         <form role="form" @submit.prevent="handleSubmitReservation">
                                             <div class="form-group">
                                                 <label>Nama</label>
-                                                <input type="nama" class="form-control" disabled v-model="guests.name">
+                                                <input type="nama" class="form-control" v-model="reservation.name">
                                             </div>
                                             <div class="form-group">
                                                 <label>Jumlah Tamu</label>
@@ -352,7 +352,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2">
-                                                                <button class="text-white btn btn-xs float-right mt-3" style="background-color: #9E5454;" :disabled="!reservationValid"><strong>Kirim</strong></button>
+                                                                <button class="text-white btn btn-sm float-right mt-3" style="background-color: #9E5454;" :disabled="!reservationValid"><strong>Kirim</strong></button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -404,45 +404,35 @@
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-12">
                                 <div class="ibox">
-                                    <div class="ibox-title p-3">
-                                        <div class="ibox mb-2">
-                                            <div class="ibox-content">
-                                                <table class="w-100" v-if="currentCommentShow.hasOwnProperty('uuid')">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td @click="handlePrev">
-                                                                <i class="fa fa-angle-left"></i>
-                                                            </td>
-                                                            <td>
-                                                                <div class="social-avatar pt-0 w-100">
-                                                                    <a href="" class="float-left">
-                                                                        <img alt="image" :src="`https://ui-avatars.com/api/?name=${currentCommentShow.name.split(' ').join('+')}`">
-                                                                    </a>
-                                                                    <div class="media-body">
-                                                                        <a href="#" style="color: #676a6c;">{{ currentCommentShow.name }}</a>
-                                                                        <small class="text-muted">
-                                                                            <a style="font-size: 10px;" :href="`https://instagram.com/${currentCommentShow.account.replace('@', '')}`" v-if="currentCommentShow.account" target="_blank">{{ currentCommentShow.account }}</a>
-                                                                            {{ format(new Date(currentCommentShow.date), 'dd MMMM yyyy, HH:mm') }}
-                                                                        </small>
-                                                                        <p class="mt-2">{{ currentCommentShow.content }}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td @click="handleNext">
-                                                                <i class="fa fa-angle-right"></i>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <p v-else class="mb-0 text-center">Belum Ada Ucapan, Jadilah Yang Pertama</p>
+                                    <div class="ibox-title p-0 pb-2">
+                                        <h5 class="px-3 py-0 pt-3" style="font-family: 'Great Vibes', cursive;color: #9E5454; font-size: 24px;">{{ this.comments.length }} Ucapan</h5>
+                                        <div class="social-avatar p-3 mx-3 text-white" v-if="currentCommentShow.uuid"  style="background-color: #9E5454;">
+                                            <a href="" class="float-left">
+                                                <img alt="image" :src="`https://ui-avatars.com/api/?name=${currentCommentShow.name.split(' ').join('+')}`">
+                                            </a>
+                                            <div class="media-body d-flex flex-column">
+                                                <a href="#" style="color: #ffffff; font-weight: 600;">{{ currentCommentShow.name }}</a>
+                                                <small class="text-white">
+                                                    <a style="font-size: 10px;" :href="`https://instagram.com/${currentCommentShow.account.replace('@', '')}`" v-if="currentCommentShow.account" target="_blank">{{ currentCommentShow.account }}</a>
+                                                    {{ format(new Date(currentCommentShow.date), 'dd MMMM yyyy, HH:mm') }}
+                                                </small>
+                                                <p class="m-0 text-white">{{ currentCommentShow.content }}</p>
                                             </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end mr-3 mt-2">
+                                            <button class="btn kawaii btn-xs text-white mr-2">
+                                                <i class="fa fa-angle-left"></i>
+                                            </button>
+                                            <button class="btn kawaii btn-xs text-white">
+                                                <i class="fa fa-angle-right"></i>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="ibox-content pb-0">
                                         <form role="form" @submit.prevent="handleSubmitComment">
                                             <div class="form-group">
                                                 <label>Nama</label>
-                                                <input type="nama" class="form-control" disabled v-model="guests.name">
+                                                <input type="nama" class="form-control" v-model="comment.form.name">
                                             </div>
                                             <div class="form-group">
                                                 <label>Ucapan</label>
@@ -453,7 +443,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <button class="text-white btn btn-xs float-right mt-3" style="background-color: #9E5454;" :disabled="!comment.form.uuid"><strong>Kirim</strong></button>
+                                                                <button class="text-white btn btn-sm float-right mt-3" style="background-color: #9E5454;" :disabled="!comment.form.uuid"><strong>Kirim</strong></button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -531,6 +521,7 @@ export default {
                 if (!form) {
                     this.comment.form = {
                         uuid: this.guests.uuid,
+                        name: '',
                         content: '',
                         date: '',
                     }
@@ -557,6 +548,7 @@ export default {
             },
             reservation: {
                 uuid: '',
+                name: '',
                 count: 1,
                 present: true,
             },
@@ -564,6 +556,7 @@ export default {
                 curr: 0,
                 form: {
                     uuid: '',
+                    name: '',
                     content: '',
                     date: '',
                 }
@@ -624,9 +617,10 @@ export default {
             if (this.comments.length === 0) return {}
             const comment = this.comments.sort((a, b) => new Date(b.date) - new Date(a.date))[this.comment.curr]
             const guest = this.allGuests.find(g => g.uuid == comment.uuid)
+            const name = comment.name != null && comment.name != '' ? (comment.name) : (guest ? guest.name : '')
             return {
                 ...comment,
-                ...guest,
+                name,
             }
         }
     },

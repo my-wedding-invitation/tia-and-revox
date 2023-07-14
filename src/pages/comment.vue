@@ -48,17 +48,19 @@
                                         @totalPagesChanged="table.total = $event" selectedClass="table-warning"
                                         @selectionChanged="handleClickComment" class="table table-striped table-bordered">
                                         <thead slot="head">
+                                            <th>Guest</th>
                                             <th>Name</th>
                                             <th>Content</th>
                                         </thead>
                                         <tbody slot="body" slot-scope="{displayData}">
                                             <v-tr v-for="row in displayData" :key="row.id" :row="row"
                                                 v-if="displayData.length">
+                                                <td>{{ row.guest }}</td>
                                                 <td>{{ row.name }}</td>
                                                 <td>{{ row.content }}</td>
                                             </v-tr>
                                             <v-tr v-if="displayData.length === 0" :row="{}">
-                                                <td colspan="2" class="text-center">There's No Data</td>
+                                                <td colspan="3" class="text-center">There's No Data</td>
                                             </v-tr>
                                         </tbody>
                                     </v-table>
@@ -90,10 +92,17 @@
                         <form>
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label>Name</label>
+                                    <label>Guest</label>
                                     <select class="form-control" v-model="comment.uuid" :disabled="edit">
                                         <option v-for="guest in filteredGuests" :value="guest.uuid">{{ guest.name }}</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" v-model="comment.name">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -138,7 +147,8 @@ export default {
         edit: false,
         comment: {
             uuid: '',
-            content: ''
+            content: '',
+            name: ''
         },
         table: {
             page: 1,
@@ -147,7 +157,7 @@ export default {
             filters: {
                 main: {
                     value: '',
-                    keys: ['name', 'content']
+                    keys: ['guest', 'name', 'content']
                 },
             }
         }
@@ -161,7 +171,7 @@ export default {
                 const { name } = this.guests.find(guest => guest.uuid === comment.uuid)
                 return {
                     ...comment,
-                    name
+                    guest: name
                 }
             })
         },
@@ -185,7 +195,8 @@ export default {
             this.edit = false
             this.comment = {
                 uuid: '',
-                content: ''
+                content: '',
+                name: ''
             }
             $(this.$refs.modal).modal('show')
         },
@@ -199,7 +210,6 @@ export default {
         handleEditComment() {
             this.edit = true
             this.comment = cloneDeep(this.selected)
-            delete this.comment.name
             $(this.$refs.modal).modal('show')
         },
         async handleClickSave() {
@@ -207,6 +217,7 @@ export default {
             if (this.edit) {
                 const uuid = payload.uuid
                 delete payload.uuid
+                delete payload.guest
                 const success = await this.updateComment(uuid, payload)
                 this.$Simplert.open({
                     title: '',
