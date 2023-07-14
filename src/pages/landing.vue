@@ -215,8 +215,8 @@
                                             </a>
                                         </div>
                                         <div class="col-lg-4">
-                                            <a data-fancybox="gallery" href="/img/data/Foto Galeri 2.jpg">
-                                                <img class="img-thumbnail mt-3" src="/img/data/Foto Galeri 2.jpg" />
+                                            <a data-fancybox="gallery" href="/img/data/Foto Cover Depan.jpg">
+                                                <img class="img-thumbnail mt-3" src="/img/data/Foto Cover Depan.jpg" />
                                             </a>
                                         </div>
                                         <div class="col-lg-4">
@@ -380,7 +380,17 @@
                                         <img class="img-fluid w-25" src="/img/data/bca.png">
                                         <h3 style="margin-top: -10px;color: #676a6c;">a/n Suprihatin Setia</h3>
                                         <h3 class="text-bold">8720390486</h3>
-                                        <button class="btn kawaii mb-4 mt-2 text-white" @click="copyText">
+                                        <button class="btn kawaii mb-4 mt-2 text-white" @click="() => copyText(8720390486)">
+                                            <i class="fa fa-copy mr-1"></i> Salin
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="ibox mt-5">
+                                    <div class="ibox-content p-0"  style="border-radius: 10px;">
+                                        <img class="img-fluid w-25" src="/img/data/bca.png">
+                                        <h3 style="margin-top: -10px;color: #676a6c;">a/n Revox Rizkian</h3>
+                                        <h3 class="text-bold">5770971634</h3>
+                                        <button class="btn kawaii mb-4 mt-2 text-white" @click="() => copyText(5770971634)">
                                             <i class="fa fa-copy mr-1"></i> Salin
                                         </button>
                                     </div>
@@ -452,6 +462,28 @@
                                         </form>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="final" class="container-fluid">
+            <div class="row justify-content-center align-items-top">
+                <div class="col-lg-12">
+                    <div id="particles-js-4"></div>
+                    <div id="overlay-4"></div>
+                    <div class="container-fluid">
+                        <div class="row mt-3 mb-3">
+                            <div class="col-lg-12 text-center wow">
+                                <h3 class="text-white">Terima Kasih</h3>
+                                <h1 style="font-family: 'Great Vibes', cursive;margin: 30px 0px; font-size: 48px;color: #9E5454;">Tia & Revox</h1>
+                                <h4 class="text-white">Made With Love By:</h4>
+                                <img class="img-fluid w-25" src="/img/data/JEER STUDIO.png">
+                                <h5>
+                                    <i class="fa fa-instagram mr-1 text-white"></i>
+                                    <a href="https://instagram.com/jehaanr" target="_blank" class="text-white">@jehaanr</a>
+                                </h5>
                             </div>
                         </div>
                     </div>
@@ -587,6 +619,7 @@ export default {
         })
         this.registerParticleJS()
         this.registerParticleJS('-2')
+        this.registerParticleJS('-4')
         this.registerLottieJS()
         this.registerGallery()
         this.countdownToDate('2023-07-23')
@@ -609,7 +642,7 @@ export default {
         ...mapState(useCommentStore, ['comments']),
         ...mapState(useReservationStore, ['reservations']),
         reservationValid() {
-            if (!this.guests) return false
+            if (isEmpty(this.guests)) return false
             if (this.reservation.present && this.reservation.count === 0) return false
             return true
         },
@@ -865,9 +898,9 @@ export default {
                 })
             }
         },
-        copyText() {
+        copyText(txt) {
             const textField = document.createElement('textarea')
-            textField.innerText = '8720390486'
+            textField.innerText = txt
             document.body.appendChild(textField)
             textField.select()
             document.execCommand('copy')
@@ -918,7 +951,8 @@ export default {
 <style>
 #particles-js,
 #particles-js-2,
-#particles-js-3 {
+#particles-js-3,
+#particles-js-4 {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -928,8 +962,12 @@ export default {
     background-size: cover;
     background-position: 50%;
 }
+#particles-js-4 {
+    background-image: url('/img/data/Foto Cover Depan.jpg');
+}
 #overlay,
-#overlay-2 {
+#overlay-2,
+#overlay-4 {
     position: absolute;
     top: 0;
     left: 0;
@@ -946,7 +984,8 @@ export default {
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.1);
 }
-#counter {
+#counter,
+#final {
     position: relative;
     width: 100%;
     height: fit-content;
@@ -965,6 +1004,9 @@ export default {
     }
     #resepsi {
         margin-top: 3rem;
+    }
+    #particles-js-4 {
+        background-position: 50% 35%;
     }
 }
 @media screen and (min-width: 767px) {
