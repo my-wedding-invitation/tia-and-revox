@@ -420,10 +420,10 @@
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-end mr-3 mt-2">
-                                            <button class="btn kawaii btn-xs text-white mr-2">
+                                            <button @click="handlePrev" class="btn kawaii btn-xs text-white mr-2">
                                                 <i class="fa fa-angle-left"></i>
                                             </button>
-                                            <button class="btn kawaii btn-xs text-white">
+                                            <button @click="handleNext" class="btn kawaii btn-xs text-white">
                                                 <i class="fa fa-angle-right"></i>
                                             </button>
                                         </div>
