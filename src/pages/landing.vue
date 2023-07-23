@@ -75,7 +75,7 @@
                     <img class="im-fluid" id="botanical" style="width: 5%;" src="/img/data/Botanical-line-Art-white-1.png" />
                     <h3 class="text-white mt-3 mb-3">Hitung Mundur</h3>
                     <h1 style="font-family: 'Great Vibes', cursive;color: #9E5454;">Menuju Hari Bahagia</h1>
-                    <div v-if="typeof(counter) == 'string'" style="font-size: 40px;">{{ counter }}</div>
+                    <div class="w-75 mx-auto my-3" v-if="typeof(counter) == 'string'" style="font-size: 40px;">{{ counter }}</div>
                     <table v-else class="w-75 mx-auto my-3">
                         <thead>
                             <tr>
@@ -691,7 +691,7 @@ export default {
                     second: secondsLeft
                 }
 
-                if (timeLeft < 0) {
+                if (secondsLeft < 0) {
                     clearInterval(countdownFunction)
                     self.counter = "Sedang Berlangsung"
                 }
