@@ -75,8 +75,8 @@
                     <img class="im-fluid" id="botanical" style="width: 5%;" src="/img/data/Botanical-line-Art-white-1.png" />
                     <h3 class="text-white mt-3 mb-3">Hitung Mundur</h3>
                     <h1 style="font-family: 'Great Vibes', cursive;color: #9E5454;">Menuju Hari Bahagia</h1>
-                    <div class="w-75 mx-auto my-3" v-if="typeof(counter) == 'string'" style="font-size: 40px;">{{ counter }}</div>
-                    <table v-else class="w-75 mx-auto my-3">
+                    <div class="w-75 mx-auto my-3" style="font-size: 40px;">{{ counter }}</div>
+                    <table class="w-75 mx-auto my-3" style="display: none;">
                         <thead>
                             <tr>
                                 <th class="text-white">
@@ -675,7 +675,7 @@ export default {
         countdownToDate(targetDate) {
             var self = this
             var targetTime = new Date(targetDate).getTime()
-            setInterval(function() {
+            var countdownFunction = setInterval(function() {
                 var currentDate = new Date().getTime()
                 var timeLeft = targetTime - currentDate
 
